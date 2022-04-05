@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
+import GetSet.VariablesEstudiantes;
 import SQL.CrudSQL;
 /**
  *
@@ -224,7 +225,12 @@ public class frmEstudiantes extends javax.swing.JFrame {
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         // TODO add your handling code here:
         CrudSQL ObjCrud = new CrudSQL();
+        VariablesEstudiantes varEstudiante = new VariablesEstudiantes(); 
         ObjCrud.MostrarEstudiante(txtCodigo.getText());
+        txtCodigo.setText(varEstudiante.getCodigo());
+        txtNombre.setText(varEstudiante.getNombre());
+        txtApellido.setText(varEstudiante.getApellido());
+        txtTelefono.setText(varEstudiante.getTelefono());
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     /**
