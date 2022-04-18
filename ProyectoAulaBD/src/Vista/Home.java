@@ -33,12 +33,12 @@ public class Home extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnEstudiantes = new javax.swing.JButton();
+        btnAsignaturas = new javax.swing.JButton();
+        btnGrupos = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnProfesores = new javax.swing.JButton();
+        btnCalificaciones = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -85,61 +85,81 @@ public class Home extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel9.setBackground(new java.awt.Color(222, 222, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel9.setMaximumSize(new java.awt.Dimension(1280, 720));
         jPanel9.setPreferredSize(new java.awt.Dimension(800, 500));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Estudiante.png"))); // NOI18N
-        jButton4.setToolTipText("");
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        jButton4.setMaximumSize(new java.awt.Dimension(150, 150));
-        jButton4.setMinimumSize(new java.awt.Dimension(150, 150));
-        jButton4.setPreferredSize(new java.awt.Dimension(100, 100));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setBackground(new java.awt.Color(222, 222, 255));
+
+        btnEstudiantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Estudiante.png"))); // NOI18N
+        btnEstudiantes.setToolTipText("");
+        btnEstudiantes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEstudiantes.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        btnEstudiantes.setMaximumSize(new java.awt.Dimension(150, 150));
+        btnEstudiantes.setMinimumSize(new java.awt.Dimension(150, 150));
+        btnEstudiantes.setPreferredSize(new java.awt.Dimension(100, 100));
+        btnEstudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnEstudiantesActionPerformed(evt);
             }
         });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Asignaturas.png"))); // NOI18N
-        jButton5.setToolTipText("");
-        jButton5.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        jButton5.setMaximumSize(new java.awt.Dimension(150, 150));
-        jButton5.setMinimumSize(new java.awt.Dimension(150, 150));
-        jButton5.setPreferredSize(new java.awt.Dimension(100, 100));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnAsignaturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Asignaturas.png"))); // NOI18N
+        btnAsignaturas.setToolTipText("");
+        btnAsignaturas.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        btnAsignaturas.setMaximumSize(new java.awt.Dimension(150, 150));
+        btnAsignaturas.setMinimumSize(new java.awt.Dimension(150, 150));
+        btnAsignaturas.setPreferredSize(new java.awt.Dimension(100, 100));
+        btnAsignaturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnAsignaturasActionPerformed(evt);
             }
         });
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/GruposEstudiante.png"))); // NOI18N
+        btnGrupos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/GruposEstudiante.png"))); // NOI18N
+        btnGrupos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGruposActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAsignaturas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(97, 97, 97)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnEstudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnAsignaturas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Profesores.png"))); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(222, 222, 255));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Calificaciones.png"))); // NOI18N
+        btnProfesores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Profesores.png"))); // NOI18N
+        btnProfesores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProfesoresActionPerformed(evt);
+            }
+        });
+
+        btnCalificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Calificaciones.png"))); // NOI18N
+        btnCalificaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalificacionesActionPerformed(evt);
+            }
+        });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Configuracion.png"))); // NOI18N
 
@@ -148,9 +168,9 @@ public class Home extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCalificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(102, 102, 102)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnProfesores, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
@@ -160,14 +180,14 @@ public class Home extends javax.swing.JFrame {
             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnProfesores, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCalificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 255, 51));
-        jLabel1.setText("INSTITUTO EDUCATIVO  DEL META");
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText("INSTITUTO EDUCATIVO  DAMOCLES");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setText("Estudiantes");
@@ -252,17 +272,45 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstudiantesActionPerformed
         // TODO add your handling code here:
         frmEstudiantes ObjEst = new frmEstudiantes();
         ObjEst.setVisible(true);
         ObjEst.setLocationRelativeTo(null);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnEstudiantesActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnAsignaturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignaturasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        frmAsignaturas ObjAsig = new  frmAsignaturas();
+        ObjAsig.setVisible(true);
+        ObjAsig.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAsignaturasActionPerformed
+
+    private void btnGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGruposActionPerformed
+        // TODO add your handling code here:
+        frmGrupos ObjGrup = new frmGrupos();
+        ObjGrup.setVisible(true);
+        ObjGrup.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnGruposActionPerformed
+
+    private void btnCalificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalificacionesActionPerformed
+        // TODO add your handling code here:
+        frmCalificaciones ObjCal = new frmCalificaciones();
+        ObjCal.setVisible(true);
+        ObjCal.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCalificacionesActionPerformed
+
+    private void btnProfesoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfesoresActionPerformed
+        // TODO add your handling code here:
+        frmDocentes ObjDoc = new frmDocentes();
+        ObjDoc.setVisible(true);
+        ObjDoc.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnProfesoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,12 +350,12 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAsignaturas;
+    private javax.swing.JButton btnCalificaciones;
+    private javax.swing.JButton btnEstudiantes;
+    private javax.swing.JButton btnGrupos;
+    private javax.swing.JButton btnProfesores;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

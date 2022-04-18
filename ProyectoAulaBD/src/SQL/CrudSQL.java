@@ -3,6 +3,7 @@ package SQL;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import GetSet.*;
+import java.awt.HeadlessException;
 public class CrudSQL {
     //Se crea un objeto de la clase ConexionSQL el cual permite abrir la conexion con la base de datos
 ConexionSQL con = new ConexionSQL();
@@ -12,18 +13,20 @@ VariablesEstudiantes varEstudiante = new VariablesEstudiantes();
     public void insertarEstudiante (String codigo,String nombre, String apellido, String telefono){
 
             try{
+                
+                int i = Integer.parseInt(codigo);
                 //Conecta db
                 Connection conexion = con.conectar();
                 //Prepara la sentencia sql 
                 Statement st = conexion.createStatement();
                 //Sentencia SQL
-                String sql = "INSERT INTO estudiantes (codigo,nombre,apellido,telefono) VALUES ('"+codigo+"','"+nombre+"','"+apellido+"','"+telefono+"');";
+                String sql = "INSERT INTO estudiantes (codigoEst,nombreEst,apellidoEst,telefonoEst) VALUES ('"+i+"','"+nombre+"','"+apellido+"','"+telefono+"');";
                 st.execute(sql);
                 st.close();
                 JOptionPane.showMessageDialog(null, "Estudiante Agregado");
 
             }
-            catch(Exception e){
+            catch(SQLException e){
                 //System.err.println("eee");
                 JOptionPane.showMessageDialog(null, e);
             }
@@ -51,7 +54,7 @@ VariablesEstudiantes varEstudiante = new VariablesEstudiantes();
                 JOptionPane.showMessageDialog(null, "No existe Estudiante, revisar codigo");
         
         }
-        catch(Exception e){
+        catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
         
         }
