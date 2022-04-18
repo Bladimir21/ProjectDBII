@@ -4,9 +4,9 @@ import java.sql.*;
 
 public class ConexionSQL {
     
-    String url="jdbc:postgresql://localhost:5432/Damocles [postgres on Default schema]";
-    String user="posfrest";
-    String password="1234";
+    String url="jdbc:postgresql://localhost:5432/Damocles";
+    String user="postgres";
+    String password="12345";
     Connection conn = null;
     public Connection conectar(){
         
