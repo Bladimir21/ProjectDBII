@@ -3,7 +3,7 @@ package SQL;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import GetSet.*;
-import java.awt.HeadlessException;
+
 public class CrudSQL {
     //Se crea un objeto de la clase ConexionSQL el cual permite abrir la conexion con la base de datos
 ConexionSQL con = new ConexionSQL();
@@ -20,9 +20,10 @@ VariablesEstudiantes varEstudiante = new VariablesEstudiantes();
                 //Prepara la sentencia sql 
                 Statement st = conexion.createStatement();
                 //Sentencia SQL
-                String sql = "INSERT INTO estudiantes (codigoEst,nombreEst,apellidoEst,telefonoEst) VALUES ('"+i+"','"+nombre+"','"+apellido+"','"+telefono+"');";
+                String sql = "INSERT INTO estudiantes (codigoEst,nombreest,apellidoest,telefonoest) VALUES ('"+i+"','"+nombre+"','"+apellido+"','"+telefono+"');";
                 st.execute(sql);
                 st.close();
+                conexion.close();
                 JOptionPane.showMessageDialog(null, "Estudiante Agregado");
 
             }
@@ -38,14 +39,14 @@ VariablesEstudiantes varEstudiante = new VariablesEstudiantes();
             Connection conexion = con.conectar();
             Statement st = conexion.createStatement();
              int i = Integer.parseInt(id);
-            String sql = "SELECT * FROM estudiantes WHERE codigo='"+i+"';";
+            String sql = "SELECT * FROM estudiantes WHERE codigoEst='"+i+"';";
             ResultSet rs = st.executeQuery(sql);
             if(rs.next()){
                 
-                varEstudiante.setCodigo(rs.getString("codigo"));
-                varEstudiante.setNombre(rs.getString("nombre"));
-                varEstudiante.setApellido(rs.getString("apellido"));
-                varEstudiante.setTelefono(rs.getString("telefono"));
+                varEstudiante.setCodigo(rs.getString("estudiantes.codigoest"));
+                varEstudiante.setNombre(rs.getString("estudiantes.nombreest"));
+                varEstudiante.setApellido(rs.getString("estudiantes.apellidoest"));
+                varEstudiante.setTelefono(rs.getString("estudiantes.telefonoest"));
                 System.out.print(varEstudiante.getCodigo()+"\t");
                 System.out.print(varEstudiante.getNombre());
                 System.out.print(varEstudiante.getApellido());
