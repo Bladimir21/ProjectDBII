@@ -7,7 +7,11 @@ package Imprimir;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import javax.swing.JOptionPane;
-
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 /**
  *
  * @author Bladimir
@@ -32,6 +36,7 @@ public class frmImprimir extends javax.swing.JFrame {
 
         btnImprimir = new javax.swing.JButton();
         pnlCertificado1 = new Imprimir.pnlCertificado();
+        btnPDF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,15 +47,26 @@ public class frmImprimir extends javax.swing.JFrame {
             }
         });
 
+        btnPDF.setText("Generar PDF");
+        btnPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnImprimir)
-                    .addComponent(pnlCertificado1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlCertificado1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnImprimir)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPDF)
+                        .addGap(16, 16, 16)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -58,9 +74,11 @@ public class frmImprimir extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlCertificado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnImprimir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnImprimir)
+                    .addComponent(btnPDF))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -81,6 +99,21 @@ public class frmImprimir extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
+        // TODO add your handling code here:
+        Document documento = new Document();
+        try {
+            String ruta = System.getProperty("user.home");
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta+"/\\Desktop/Reporte.pdf"));
+            documento.open();
+            PdfPTable tabla = new PdfPTable(4);
+            //De esta forma se va a crear una tabla no generar un pdf en este formato desde una vista establecida
+            
+        } catch (Exception e) {
+        }
+              
+    }//GEN-LAST:event_btnPDFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,6 +152,7 @@ public class frmImprimir extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnImprimir;
+    private javax.swing.JButton btnPDF;
     private Imprimir.pnlCertificado pnlCertificado1;
     // End of variables declaration//GEN-END:variables
 }
