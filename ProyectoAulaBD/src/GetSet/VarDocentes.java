@@ -8,15 +8,15 @@ package GetSet;
  *
  * @author Bladimir
  */
-public class VariablesEstudiantes {
-    private String codigo,nombre,apellido,telefono,direccion,acudiente,telAcudiente;
+public class VarDocentes {
+    private String cc,nombre,apellido,telefono,direccion,asignatura;
 
-    public String getCodigo() {
-        return codigo;
+    public String getCc() {
+        return cc;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCc(String cc) {
+        this.cc = cc;
     }
 
     public String getNombre() {
@@ -51,20 +51,11 @@ public class VariablesEstudiantes {
         this.direccion = direccion;
     }
 
-    public String getAcudiente() {
-        return acudiente;
+    public String getAsignatura() {
+        return asignatura;
     }
 
-    public void setAcudiente(String acudiente) {
-        this.acudiente = acudiente;
+    public void setAsignatura(String asignatura) {
+        this.asignatura = asignatura;
     }
-
-    public String getTelAcudiente() {
-        return telAcudiente;
-    }
-
-    public void setTelAcudiente(String telAcudiente) {
-        this.telAcudiente = telAcudiente;
-    }
-   
 }

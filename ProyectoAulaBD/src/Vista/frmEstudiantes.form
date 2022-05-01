@@ -28,7 +28,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="500" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="672" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -68,7 +68,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                  <Component id="jDateChooser1" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="dtFechaNac" min="-2" pref="170" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -93,7 +93,7 @@
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jTextField2" min="-2" pref="125" max="-2" attributes="0"/>
+                                              <Component id="txtTelefonoEst" min="-2" pref="125" max="-2" attributes="0"/>
                                               <Component id="txtNombre" min="-2" pref="151" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -103,15 +103,15 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel6" min="-2" pref="110" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtTelefono" min="-2" pref="164" max="-2" attributes="0"/>
+                                  <Component id="txtAcudiente" min="-2" pref="164" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel5" min="-2" pref="97" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField1" min="-2" pref="125" max="-2" attributes="0"/>
+                                  <Component id="txtTelAcudiente" min="-2" pref="125" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="195" max="-2" attributes="0"/>
-                                  <Component id="jTextField3" min="-2" pref="219" max="-2" attributes="0"/>
+                                  <Component id="txtDireccion" min="-2" pref="219" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
@@ -154,7 +154,7 @@
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="txtTelefonoEst" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtApellido" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="btnConsultar" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
@@ -170,12 +170,12 @@
                               </Group>
                           </Group>
                       </Group>
-                      <Component id="jDateChooser1" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="dtFechaNac" min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField3" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtDireccion" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="btnBorrar" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -183,9 +183,9 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtTelefono" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="txtAcudiente" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="txtTelAcudiente" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -265,7 +265,7 @@
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtTelefono">
+        <Component class="javax.swing.JTextField" name="txtAcudiente">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Trebuchet MS" size="14" style="3"/>
@@ -303,6 +303,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Actualizar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnInsertar">
           <Properties>
@@ -334,6 +337,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBorrarActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel3">
 
@@ -358,7 +364,7 @@
             <Property name="text" type="java.lang.String" value="Acudiente: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="txtTelAcudiente">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
@@ -368,7 +374,7 @@
             <Property name="text" type="java.lang.String" value="Telefono: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="txtTelefonoEst">
         </Component>
         <Component class="javax.swing.JButton" name="btnRegresar">
           <Properties>
@@ -401,7 +407,7 @@
             <Property name="text" type="java.lang.String" value="Direccion Residencia"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="txtDireccion">
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
@@ -411,7 +417,7 @@
             <Property name="text" type="java.lang.String" value="Imprimir"/>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+        <Component class="com.toedter.calendar.JDateChooser" name="dtFechaNac">
         </Component>
       </SubComponents>
     </Container>

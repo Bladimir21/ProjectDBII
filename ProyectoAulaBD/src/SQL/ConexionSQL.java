@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class ConexionSQL {
     
-    String url="jdbc:postgresql://localhost:5432/Damocles";
+    String url="jdbc:postgresql://localhost:5432/damocles";
     String user="postgres";
     String password="12345";
     Connection conn = null;
