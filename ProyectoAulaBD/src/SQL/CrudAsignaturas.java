@@ -6,6 +6,8 @@ package SQL;
 import GetSet.VarAsignatura;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -29,19 +31,23 @@ public class CrudAsignaturas {
         } catch (SQLException e) {JOptionPane.showMessageDialog(null,"Error en Insertar asignatura: "+e);}
     }
     //Los datos se pierden al llegar a la Clase varAsignatura
-    public void Mostrar(String id){
-        int i = Integer.parseInt(id);
+    public List Mostrar(){
+        //int i = Integer.parseInt(id);
+        List<VarAsignatura> datos = new ArrayList<>();
         try {
             Connection conexion = con.conectar();
             Statement st = conexion.createStatement();
-            String sql ="SELECT * FROM asignaturas WHERE codigo_asig='"+i+"';";
+            String sql ="SELECT * FROM asignaturas;";
             ResultSet rs = st.executeQuery(sql);
-            if(rs.next()){
-                ObjAsignatura.setCodigo(rs.getString(String.valueOf("codigo_asig")));
-                ObjAsignatura.setNombre(rs.getString("nombre_asig"));
-                System.out.print("Codigo: "+ObjAsignatura.getCodigo()+"Nombre: "+ObjAsignatura.getNombre());
-            }else{JOptionPane.showMessageDialog(null,"Verficar codigo de asignatura");}
+            while(rs.next()){
+                //Creacion de instancia de VarAsignatura
+                VarAsignatura asignatura = new VarAsignatura();
+                asignatura.setCodigo(rs.getString(1));
+                asignatura.setNombre(rs.getString(2));
+                datos.add(asignatura);
+            }
         } catch (SQLException e) {JOptionPane.showMessageDialog(null,"Error en Mostrar asignatura: "+e);}
+        return datos;
     }
     
     public void Actualizar (String id, String nombre){

@@ -5,7 +5,9 @@
 package SQL;
 
 import GetSet.VarDocentes;
+import java.awt.List;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,19 +43,20 @@ public class CrudDocentes {
             
             Connection conexion = con.conectar();
             Statement st = conexion.createStatement();
-            String sql ="SELECT * FROM docentes WHERE id_doc='"+i+"';";
+            String sql ="SELECT * FROM docentes WHERE id_doc='"+i+"' ORDER BY id_doc ASC;";
             ResultSet rs = st.executeQuery(sql);
-            if (rs.next()){
+            ArrayList<VarDocentes> datos = new ArrayList<>();
+            while (rs.next()){
                 ObjDocente.setCc(rs.getString(String.valueOf("id_doc")));
                 ObjDocente.setNombre(rs.getString("nombre_doc"));
                 ObjDocente.setApellido(rs.getString("apellido_doc"));
-                //ObjDocente.setAsignatura("asignatura_Doc");
                 ObjDocente.setDireccion("direccion_Doc");
                 ObjDocente.setTelefono(rs.getString("telefono_doc"));
-            }else {JOptionPane.showMessageDialog(null, "No existe Docente, revisar codigo");}
+                datos.add(ObjDocente);
+            }
             conexion.close();
             st.close();
-        } catch (SQLException e) {JOptionPane.showMessageDialog(null, "Error en Mostrar Docente: "+e);}
+        } catch (SQLException e) {JOptionPane.showMessageDialog(null, "No existe Docente, revisar codigo: "+e);}
     }
     public void Actualizar(String id, String nombre, String apellido, String telefono, String direccion){
         int i = Integer.parseInt(id);

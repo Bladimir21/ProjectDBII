@@ -4,11 +4,20 @@
  */
 package Vista;
 
+import GetSet.VarAsignatura;
+import GetSet.VarCalificacion;
+import SQL.CrudCalificacion;
+import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Bladimir
  */
 public class frmCalificaciones extends javax.swing.JFrame {
+     DefaultTableModel modelo = new DefaultTableModel();
+     CrudCalificacion calificacion = new CrudCalificacion();
 
     /**
      * Creates new form frmCalificaciones
@@ -50,7 +59,7 @@ public class frmCalificaciones extends javax.swing.JFrame {
         lblNombreEstudiante = new javax.swing.JLabel();
         lblApellidoEstudiante = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtblCalificacion = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,6 +92,11 @@ public class frmCalificaciones extends javax.swing.JFrame {
         btnMostrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnMostrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mostar.png"))); // NOI18N
         btnMostrar.setText("Mostrar");
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/actualizar.png"))); // NOI18N
@@ -128,23 +142,20 @@ public class frmCalificaciones extends javax.swing.JFrame {
 
         jLabel8.setText("Estudiante");
 
-        jTable1.setBackground(new java.awt.Color(237, 245, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtblCalificacion.setBackground(new java.awt.Color(237, 245, 255));
+        jtblCalificacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Documento", "Asignatura", "Docente", "Nota 1", "Nota 2", "Evaluacion"
+                "Documento Estudiante", "Asignatura", "Nombre Docente", "Apellido Docente", "Nota 1", "Nota 2", "Evaluacion", "Definitiva"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, true, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -155,7 +166,7 @@ public class frmCalificaciones extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtblCalificacion);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/impresora.png"))); // NOI18N
         jButton1.setText("Imprimir");
@@ -208,8 +219,8 @@ public class frmCalificaciones extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,6 +324,11 @@ public class frmCalificaciones extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+        // TODO add your handling code here:
+        Mostrar(jtblCalificacion);
+    }//GEN-LAST:event_btnMostrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -366,7 +382,7 @@ public class frmCalificaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jtblCalificacion;
     private javax.swing.JLabel lblApellidoEstudiante;
     private javax.swing.JLabel lblCodigoAsignatura;
     private javax.swing.JLabel lblNombreEstudiante;
@@ -375,4 +391,26 @@ public class frmCalificaciones extends javax.swing.JFrame {
     private javax.swing.JTextField txtNota1;
     private javax.swing.JTextField txtNota2;
     // End of variables declaration//GEN-END:variables
+//SELECT estudiantes.id_est, asignaturas.nombre_asig, docentes.nombre_doc, docentes.apellido_doc, 
+//calificacion."nota-1_calificacion",calificacion."nota-2_calificacion", 
+//calificacion.evaluacion_calificacion FROM estudiantes  JOIN calificacion ON
+//estudiantes.id_est = calificacion.id_est JOIN asignaturas ON calificacion.id_doc = asignaturas.id_doc 
+//JOIN docentes ON docentes.id_doc = calificacion.id_doc
+
+public void Mostrar(JTable jtblCalificacion){
+       modelo =  (DefaultTableModel) jtblCalificacion.getModel();
+       List<VarCalificacion> Listar = calificacion.Mostrar();
+       Object[] objeto = new Object[7];
+       for(int i=0; i<Listar.size(); i++){
+           objeto[0] = Listar.get(i).getDocumentoEst();
+           objeto[1] = Listar.get(i).getAsignatura();
+           objeto[2] = Listar.get(i).getNombreDocente();
+           objeto[3] = Listar.get(i).getApellidoDocente();
+           objeto[4] = Listar.get(i).getNota1();
+           objeto[5] = Listar.get(i).getNota2();
+           objeto[6] = Listar.get(i).getEvaluacion();
+           modelo.addRow(objeto);
+       }
+       jtblCalificacion.setModel(modelo);
+    }
 }
