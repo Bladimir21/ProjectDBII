@@ -3,10 +3,7 @@ package SQL;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import GetSet.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 public class CrudSQL {
     //Se crea un objeto de la clase ConexionSQL el cual permite abrir la conexion con la base de datos
