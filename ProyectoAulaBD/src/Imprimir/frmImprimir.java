@@ -61,6 +61,7 @@ public class frmImprimir extends javax.swing.JFrame {
         btnPDF.setBorder(null);
         btnPDF.setBorderPainted(false);
         btnPDF.setContentAreaFilled(false);
+        btnPDF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPDF.setFocusPainted(false);
         btnPDF.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/atras_Imprimir-Señ.png"))); // NOI18N
         btnPDF.addActionListener(new java.awt.event.ActionListener() {
