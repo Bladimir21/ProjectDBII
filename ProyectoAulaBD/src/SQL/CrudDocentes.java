@@ -18,7 +18,7 @@ public class CrudDocentes {
     ConexionSQL con = new ConexionSQL();
     VarDocentes ObjDocente = new VarDocentes();
     //Falta agregar Asignatura dictada por el docente
-    public void InsertarDocente(String id, String nombre, String apellido, String telefono, String direccion){
+    public void InsertarDocente(String id, String nombre, String apellido, String telefono, String direccion,String asignatura){
         
         try {
             int i = Integer.parseInt(id);
@@ -30,7 +30,7 @@ public class CrudDocentes {
                 apellido_doc
                 telefono_doc
                 direccion_doc*/
-            String sql = "INSERT INTO docentes (id_doc, nombre_doc , apellido_doc, telefono_doc, direccion_doc) VALUES ('"+i+"','"+nombre+"','"+apellido+"','"+telefono+"','"+direccion+"');";
+            String sql = "INSERT INTO docentes (id_doc, nombre_doc , apellido_doc, telefono_doc, direccion_doc, codigo_asig) VALUES ('"+i+"','"+nombre+"','"+apellido+"','"+telefono+"','"+direccion+"','"+asignatura+"');";
             st.execute(sql);
             st.close();
             conexion.close();
@@ -58,12 +58,12 @@ public class CrudDocentes {
             st.close();
         } catch (SQLException e) {JOptionPane.showMessageDialog(null, "No existe Docente, revisar codigo: "+e);}
     }
-    public void Actualizar(String id, String nombre, String apellido, String telefono, String direccion){
+    public void Actualizar(String id, String nombre, String apellido, String telefono, String direccion,String asignatura){
         int i = Integer.parseInt(id);
         try {
             Connection conexion = con.conectar();
             Statement st = conexion.createStatement();
-            String sql ="UPDATE docentes SET nombre_doc='"+nombre+"' ,apellido_doc='"+apellido+"', telefono_doc='"+telefono+"', direccion_doc='"+direccion+"' WHERE id_doc='"+i+"';";
+            String sql ="UPDATE docentes SET nombre_doc='"+nombre+"' ,apellido_doc='"+apellido+"', telefono_doc='"+telefono+"', direccion_doc='"+direccion+"', codigo_asig='"+asignatura+"' WHERE id_doc='"+i+"';";
             st.executeUpdate(sql);
             st.close();
             conexion.close();

@@ -19,6 +19,7 @@ public class frmInicio extends javax.swing.JFrame {
     /**
      * Creates new form frmInicio
      */
+    
     public frmInicio() {
         initComponents();
     }
@@ -185,13 +186,18 @@ public class frmInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         CrudUsuarios ObjUsu = new CrudUsuarios();
         //ObjUsu.Validar(txtUsuario.getText(), txtClave.getText());
-        
-        if(ObjUsu.Validar(txtUsuario.getText(), txtClave.getText())>0){
+        try {
+            if(ObjUsu.Validar(txtUsuario.getText(), txtClave.getText())==1){
+            ObjUsu.ingreso = txtUsuario.getText();
             Home ObjHome = new Home();
             ObjHome.setVisible(true);
             ObjHome.setLocationRelativeTo(null);
             this.setVisible(false);
         }
+            
+        } catch (Exception e) { System.out.println("error: "+e);
+        }
+        
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**

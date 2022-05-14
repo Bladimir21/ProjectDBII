@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 public class CrudCalificacion {
     ConexionSQL con = new ConexionSQL();
     
-     public void insertar (String nota1,String nota2, String evaluacion, String id_estudiante, String id_docente){
+     public void insertar (String id,String nota1,String nota2, String evaluacion, String id_estudiante, String id_docente){
 
             try{
                 
@@ -29,7 +29,7 @@ public class CrudCalificacion {
                 //Prepara la sentencia sql 
                 Statement st = conexion.createStatement();
                 //Sentencia SQL
-                String sql = "INSERT INTO calificacion (nota1_calificacion,nota2_calificacion,evaluacion_calificacion,id_est,id_doc) VALUES ('"+nota1+"','"+nota2+"','"+evaluacion+"','"+i+"','"+e+"');";
+                String sql = "INSERT INTO calificacion (id_calificacion,nota1_calificacion,nota2_calificacion,evaluacion_calificacion,id_est,id_doc) VALUES ('"+id+"','"+nota1+"','"+nota2+"','"+evaluacion+"','"+i+"','"+e+"');";
                 st.execute(sql);
                 st.close();
                 conexion.close();
@@ -68,7 +68,7 @@ public class CrudCalificacion {
         return datos;
     }
     
-     public void EliminarEstudiante(String id){
+        public void Eliminar(String id){
         try{
             Connection conexion = con.conectar();
             Statement st = conexion.createStatement();
@@ -82,4 +82,28 @@ public class CrudCalificacion {
         }
         catch(SQLException e){JOptionPane.showMessageDialog(null,"Error en Eliminar Calificacion: "+e);}
     }
+        
+        public void Actualizar (String id,String nota1,String nota2, String evaluacion, String id_estudiante, String id_docente){
+
+            try{
+                
+                int i = Integer.parseInt(id_estudiante);
+                //int e = Integer.parseInt(id_docente);
+                //Conecta db
+                Connection conexion = con.conectar();
+                //Prepara la sentencia sql 
+                Statement st = conexion.createStatement();
+                //Sentencia SQL
+                String sql = "UPDATE calificacion SET nota1_calificacion='"+nota1+"',nota2_calificacion='"+nota2+"',evaluacion_calificacion='"+evaluacion+"',id_est='"+id_estudiante+"',id_doc='"+id_docente+"' WHERE id_calificacion='"+id+"';";
+                st.execute(sql);
+                st.close();
+                conexion.close();
+                JOptionPane.showMessageDialog(null, "Calificacion Actualizada");
+
+            }
+            catch(SQLException e){
+                //System.err.println("Error en Insertar Estudiante" +e);
+                JOptionPane.showMessageDialog(null, "Error en Actualizar Calificacion" +e);
+            }
+        }
 }

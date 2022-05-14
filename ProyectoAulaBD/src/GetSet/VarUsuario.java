@@ -16,7 +16,8 @@ public class VarUsuario {
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
-    }
+        System.out.println("usuaaa: "+usuario); 
+   }
 
     public String getClave() {
         return clave;

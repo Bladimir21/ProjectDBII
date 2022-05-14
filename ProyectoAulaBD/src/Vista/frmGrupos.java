@@ -7,11 +7,15 @@ package Vista;
 import GetSet.VarGrupo;
 import SQL.ConexionSQL;
 import SQL.CrudGrupo;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -24,6 +28,7 @@ public class frmGrupos extends javax.swing.JFrame {
      */
     CrudGrupo ObjCrud = new CrudGrupo();
     VarGrupo ObjVar = new VarGrupo();
+    ConexionSQL con = new ConexionSQL();
     public frmGrupos() {
         initComponents();
         CargaCombox();
@@ -38,7 +43,7 @@ public class frmGrupos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new FondoPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -51,6 +56,8 @@ public class frmGrupos extends javax.swing.JFrame {
         btnActualizar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         cmbxDocentes = new javax.swing.JComboBox<>();
+        txtNombreAsesor = new javax.swing.JTextField();
+        txtApellidoAsesor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,7 +72,7 @@ public class frmGrupos extends javax.swing.JFrame {
         jLabel2.setText("Codigo:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Symbol", 3, 18)); // NOI18N
-        jLabel3.setText("Asignatura: ");
+        jLabel3.setText("Nombre");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Symbol", 3, 18)); // NOI18N
         jLabel5.setText("Asesor:");
@@ -144,39 +151,68 @@ public class frmGrupos extends javax.swing.JFrame {
             }
         });
 
+        cmbxDocentes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbxDocentesItemStateChanged(evt);
+            }
+        });
+        cmbxDocentes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmbxDocentesMouseClicked(evt);
+            }
+        });
+
+        txtNombreAsesor.setEnabled(false);
+        txtNombreAsesor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreAsesorActionPerformed(evt);
+            }
+        });
+
+        txtApellidoAsesor.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(250, 250, 250)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
+                        .addGap(0, 206, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbxDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(226, 226, 226)
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnInsertar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(82, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(299, 299, 299)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(226, 226, 226)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnInsertar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(36, 36, 36)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(110, 110, 110)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbxDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNombreAsesor, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtApellidoAsesor, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19)))))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,15 +222,19 @@ public class frmGrupos extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(jLabel1))
                     .addComponent(btnRegresar))
-                .addGap(86, 86, 86)
+                .addGap(80, 80, 80)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(cmbxDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(87, 87, 87)
+                    .addComponent(cmbxDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtApellidoAsesor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreAsesor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -229,25 +269,75 @@ public class frmGrupos extends javax.swing.JFrame {
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         // TODO add your handling code here:
-        ObjCrud.insertar(txtCodigo.getText(), txtNombre.getText(), cmbxDocentes);
+        String asesor= (String) cmbxDocentes.getSelectedItem();
+        ObjCrud.insertar(txtCodigo.getText(), txtNombre.getText(),asesor);
     }//GEN-LAST:event_btnInsertarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         // TODO add your handling code here:
-        ObjCrud.MostrarEstudiante(txtCodigo.getText());
-        txtCodigo.setText(ObjVar.getId());
-        txtNombre.setText(ObjVar.getNombre());
+//        ObjCrud.Mostrar(txtCodigo.getText());
+//        txtCodigo.setText(ObjVar.getId());
+//        txtNombre.setText(ObjVar.getNombre());
+         String codigo = txtCodigo.getText();
+         try{
+            Connection conexion = con.conectar();
+            Statement st = conexion.createStatement();
+             int codigoGrupo = Integer.parseInt(codigo);
+            String sql = "SELECT * FROM vista_grupo WHERE id_grupo ='"+codigoGrupo+"';";
+            ResultSet rs = st.executeQuery(sql);
+            if(rs.next()){
+                txtCodigo.setText(rs.getString("id_grupo"));
+                txtNombre.setText(rs.getString("nombre_grupo"));
+                txtNombreAsesor.setText(rs.getString("id_doc"));
+                txtApellidoAsesor.setText(rs.getString("nombre_doc"));
+                
+            }else{JOptionPane.showMessageDialog(null, "No existe Grupo, revisar codigo");}
+            conexion.close();
+            st.close();
+        
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error en Mostrar grupo: "+ e);
+        
+        }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-        ObjCrud.ActualizarEstudiante(txtCodigo.getText(), txtNombre.getText(), cmbxDocentes);
+        String asesor = (String) cmbxDocentes.getSelectedItem();
+        ObjCrud.ActualizarEstudiante(txtCodigo.getText(), txtNombre.getText(), asesor);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         ObjCrud.EliminarEstudiante(txtCodigo.getText());
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtNombreAsesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreAsesorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreAsesorActionPerformed
+
+    private void cmbxDocentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbxDocentesMouseClicked
+    }//GEN-LAST:event_cmbxDocentesMouseClicked
+
+    private void cmbxDocentesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbxDocentesItemStateChanged
+        // TODO add your handling code here:
+        try {
+            String id = cmbxDocentes.getSelectedItem().toString();
+            int id_profesor = Integer.parseInt(id);
+            ConexionSQL con = new ConexionSQL();
+            Connection conexion = con.conectar();
+            Statement st = conexion.createStatement();
+            String sql = "SELECT nombre_doc, apellido_doc FROM vista_grupo WHERE id_doc='"+id_profesor+"';";
+            ResultSet rs = st.executeQuery(sql);   
+           
+            if(rs.next()){
+                txtNombreAsesor.setText(rs.getString("nombre_doc"));
+                txtApellidoAsesor.setText(rs.getString("apellido_doc"));
+                }
+            
+        } catch (SQLException e) {JOptionPane.showMessageDialog(null, "Error en cargar combox" +e);        }
+    }//GEN-LAST:event_cmbxDocentesItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -296,22 +386,36 @@ public class frmGrupos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtApellidoAsesor;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombreAsesor;
     // End of variables declaration//GEN-END:variables
     public void CargaCombox(){
-        
         
         try {
             ConexionSQL con = new ConexionSQL();
             Connection conexion = con.conectar();
             Statement st = conexion.createStatement();
-            String sql ="SELECT * FROM docentes ORDER BY nombre_doc ASC";
+            String sql ="SELECT id_doc FROM docentes ORDER BY id_doc ASC";
             ResultSet rs = st.executeQuery(sql);
-            cmbxDocentes.addItem("Seleccione una opción");
+            //cmbxDocentes.addItem("Seleccione una opción");
             while(rs.next()){
-                cmbxDocentes.addItem(rs.getString("nombre_doc"));
+                cmbxDocentes.addItem(rs.getString("id_doc"));
             }
+            
         } catch (SQLException e) {JOptionPane.showMessageDialog(null, "Error en cargar combox" +e);        }
+    }
+     class FondoPanel extends JPanel{
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g){
+            
+            imagen = new ImageIcon(getClass().getResource("/images/fondo7.jpg")).getImage();
+            g.drawImage(imagen, 0, 0,getWidth(),getHeight(), this);
+            setOpaque(false);
+            super.paint(g);
+        }
     }
 }

@@ -78,8 +78,8 @@ public class frmAsignaturas extends javax.swing.JFrame {
         btnInsertar.setBorderPainted(false);
         btnInsertar.setContentAreaFilled(false);
         btnInsertar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnInsertar.setDefaultCapable(false);
         btnInsertar.setFocusPainted(false);
-        btnInsertar.setOpaque(true);
         btnInsertar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adiccionar_Sel.png"))); // NOI18N
         btnInsertar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,12 +215,12 @@ public class frmAsignaturas extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(92, 92, 92))
         );
 
@@ -326,10 +326,12 @@ public class frmAsignaturas extends javax.swing.JFrame {
     public void Mostrar(JTable Jtable){
        modelo =  (DefaultTableModel) Jtable.getModel();
        List<VarAsignatura> Listar = asigatura.Mostrar();
-       Object[] objeto = new Object[2];    
+       Object[] objeto = new Object[4];    
        for(int i=0; i<Listar.size(); i++){
            objeto[0] = Listar.get(i).getCodigo();
            objeto[1] = Listar.get(i).getNombre();
+           objeto[2] = Listar.get(i).getDocenteNombre();
+           objeto[3] = Listar.get(i).getDocenteApellido();
            modelo.addRow(objeto);
        }
        Jtable.setModel(modelo);

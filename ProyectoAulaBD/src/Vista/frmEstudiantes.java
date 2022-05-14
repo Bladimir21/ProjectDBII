@@ -4,12 +4,15 @@
  */
 package Vista;
 import GetSet.VariablesEstudiantes;
+import Imprimir.frmImprimir;
+import Imprimir.pnlCertificado;
 import SQL.ConexionSQL;
 import SQL.CrudSQL;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.*;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 /**
  *
@@ -17,6 +20,7 @@ import javax.swing.JPanel;
  */
 public class frmEstudiantes extends javax.swing.JFrame {
     FondoPanel fondo = new FondoPanel();
+    VariablesEstudiantes varEstudiante = new VariablesEstudiantes();
     /**
      * Creates new form frmEstudiantes
      */
@@ -56,9 +60,10 @@ public class frmEstudiantes extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        cmbGrupo = new javax.swing.JComboBox<>();
+        btnImprimir = new javax.swing.JButton();
+        cmbxGrupo = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
+        txtGrupo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -161,11 +166,11 @@ public class frmEstudiantes extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
+            .addGap(0, 20, Short.MAX_VALUE)
         );
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 2, 18)); // NOI18N
-        jLabel6.setText("Acudiente: ");
+        jLabel6.setText("Contacto");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 2, 18)); // NOI18N
         jLabel7.setText("Telefono: ");
@@ -186,17 +191,46 @@ public class frmEstudiantes extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 2, 18)); // NOI18N
         jLabel9.setText("Direccion Residencia");
 
-        jButton1.setBackground(new java.awt.Color(225, 249, 225));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/impresora.png"))); // NOI18N
-        jButton1.setText("Imprimir");
-        jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imprimir_Sel2.png"))); // NOI18N
+        btnImprimir.setBackground(new java.awt.Color(253, 253, 253));
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/impresora.png"))); // NOI18N
+        btnImprimir.setText("Imprimir");
+        btnImprimir.setBorder(null);
+        btnImprimir.setBorderPainted(false);
+        btnImprimir.setContentAreaFilled(false);
+        btnImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnImprimir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imprimir_Sel2.png"))); // NOI18N
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
 
-        cmbGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbxGrupo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbxGrupoItemStateChanged(evt);
+            }
+        });
+        cmbxGrupo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmbxGrupoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cmbxGrupoMouseEntered(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 2, 18)); // NOI18N
         jLabel8.setText("Grupo");
+
+        txtGrupo.setEnabled(false);
+        txtGrupo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtGrupoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtGrupoMouseEntered(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -241,14 +275,17 @@ public class frmEstudiantes extends javax.swing.JFrame {
                                                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(98, 98, 98)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(txtAcudiente, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtTelAcudiente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(cmbGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(cmbxGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -267,7 +304,7 @@ public class frmEstudiantes extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -275,7 +312,7 @@ public class frmEstudiantes extends javax.swing.JFrame {
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(457, 457, 457)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -299,9 +336,10 @@ public class frmEstudiantes extends javax.swing.JFrame {
                             .addComponent(txtTelAcudiente, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                            .addComponent(cmbGrupo))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbxGrupo))
+                        .addGap(15, 15, 15)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -310,7 +348,7 @@ public class frmEstudiantes extends javax.swing.JFrame {
                             .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -340,27 +378,68 @@ public class frmEstudiantes extends javax.swing.JFrame {
         // TODO add your handling code here:
         CrudSQL ObjCrud = new CrudSQL();
     
-            ObjCrud.insertarEstudiante(txtCodigo.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefonoEst.getText(), txtAcudiente.getText(), txtTelAcudiente.getText(), txtDireccion.getText());
+            ObjCrud.insertarEstudiante(txtCodigo.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefonoEst.getText(), txtAcudiente.getText(), txtTelAcudiente.getText(), txtDireccion.getText(),cmbxGrupo.getSelectedItem().toString());
     }//GEN-LAST:event_btnInsertarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         // TODO add your handling code here:
-        CrudSQL ObjCrud = new CrudSQL();
-        VariablesEstudiantes varEstudiante = new VariablesEstudiantes();
-        ObjCrud.MostrarEstudiante(txtCodigo.getText());
-        txtCodigo.setText(varEstudiante.getCodigo());
-        txtNombre.setText(varEstudiante.getNombre());
-        txtApellido.setText(varEstudiante.getApellido());
-        txtAcudiente.setText(varEstudiante.getTelefono());
-        txtTelAcudiente.setText(varEstudiante.getAcudiente());
-        txtTelAcudiente.setText(varEstudiante.getTelAcudiente());
-        txtDireccion.setText(varEstudiante.getDireccion());
+//        CrudSQL ObjCrud = new CrudSQL();
+////        VariablesEstudiantes varEstudiante = new VariablesEstudiantes();
+////        System.out.println("C: "+varEstudiante.getCodigo()+"Nom: "+varEstudiante.getNombre()+"Ape: "+varEstudiante.getApellido()+"Faltan");
+//        ObjCrud.MostrarEstudiante(txtCodigo.getText());
+//        
+//        System.out.println("C: "+varEstudiante.getCodigo()+"Nom: "+varEstudiante.getNombre()+"Ape: "+varEstudiante.getApellido()+"Faltan");
+//        txtCodigo.setText(varEstudiante.getCodigo());
+//        txtNombre.setText(varEstudiante.getNombre());
+//        txtApellido.setText(varEstudiante.getApellido());
+//        txtAcudiente.setText(varEstudiante.getTelefono());
+//        txtTelAcudiente.setText(varEstudiante.getAcudiente());
+//        txtTelAcudiente.setText(varEstudiante.getTelAcudiente());
+//        txtDireccion.setText(varEstudiante.getDireccion());
+            ConexionSQL con = new ConexionSQL();
+            try{
+            Connection conexion = con.conectar();
+            Statement st = conexion.createStatement();
+             //int i = Integer.parseInt(id);
+            String sql = "SELECT * FROM estudiantes WHERE id_est='"+txtCodigo.getText()+"';";
+            ResultSet rs = st.executeQuery(sql);
+            if(rs.next()){
+                
+//                txtCodigo.setCodigo(rs.getString("id_est"));
+                txtCodigo.setText(rs.getString("id_est"));
+                txtNombre.setText(rs.getString("nombre_est"));
+                txtApellido.setText(rs.getString("apellido_est"));
+                txtTelefonoEst.setText(rs.getString("telefono_est"));
+                txtAcudiente.setText(rs.getString("acudiente_est"));
+                txtTelAcudiente.setText(rs.getString("telacudiente_est"));
+                txtDireccion.setText(rs.getString("direccion_est"));
+                txtGrupo.setText(rs.getString("id_grupo"));
+                
+                
+//                varEstudiante.setNombre(rs.getString("nombre_est"));
+//                varEstudiante.setApellido(rs.getString("apellido_est"));
+//                varEstudiante.setTelefono(rs.getString("telefono_est"));
+//                varEstudiante.setAcudiente(rs.getString("acudiente_est"));
+//                varEstudiante.setTelAcudiente(rs.getString("telAcudiente_est"));
+//                varEstudiante.setDireccion(rs.getString("direccion_est"));
+               
+                System.out.println("C: "+varEstudiante.getCodigo()+"Nom: "+varEstudiante.getNombre()+"Ape: "+varEstudiante.getApellido()+"Faltan");
+            }else{JOptionPane.showMessageDialog(null, "No existe Estudiante, revisar codigo");}
+            conexion.close();
+            st.close();
+        
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error en Mostrar estudiante: "+ e);
+        
+        }
+
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
         CrudSQL ObjCrud = new CrudSQL();
-        ObjCrud.ActualizarEstudiante(txtCodigo.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefonoEst.getText(), txtAcudiente.getText(), txtTelAcudiente.getText(), txtDireccion.getText());
+        ObjCrud.ActualizarEstudiante(txtCodigo.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefonoEst.getText(), txtAcudiente.getText(), txtTelAcudiente.getText(), txtDireccion.getText(),cmbxGrupo.getSelectedItem().toString());
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
@@ -368,6 +447,57 @@ public class frmEstudiantes extends javax.swing.JFrame {
         CrudSQL ObjCrud = new CrudSQL();
         ObjCrud.EliminarEstudiante(txtCodigo.getText());
     }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void txtGrupoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtGrupoMouseEntered
+        // TODO add your handling code here:
+       
+            
+    }//GEN-LAST:event_txtGrupoMouseEntered
+
+    private void txtGrupoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtGrupoMouseClicked
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_txtGrupoMouseClicked
+
+    private void cmbxGrupoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbxGrupoMouseClicked
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_cmbxGrupoMouseClicked
+
+    private void cmbxGrupoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbxGrupoMouseEntered
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_cmbxGrupoMouseEntered
+
+    private void cmbxGrupoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbxGrupoItemStateChanged
+        // TODO add your handling code here:
+         try {
+            String id = cmbxGrupo.getSelectedItem().toString();
+            int id_grupo = Integer.parseInt(id);
+            ConexionSQL con = new ConexionSQL();
+            Connection conexion = con.conectar();
+            Statement st = conexion.createStatement();
+            String sql = "SELECT nombre_grupo FROM vista_grupo WHERE id_grupo='"+id_grupo+"';";
+            ResultSet rs = st.executeQuery(sql);   
+           
+            if(rs.next()){
+                txtGrupo.setText(rs.getString("nombre_grupo"));
+                }
+        } catch (SQLException e) {JOptionPane.showMessageDialog(null, "Error en cargar combox" +e);        }
+    }//GEN-LAST:event_cmbxGrupoItemStateChanged
+
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        // TODO add your handling code here:
+        frmImprimir Imprimir = new frmImprimir();
+        //pnlCertificado certificado = new pnlCertificado();
+        pnlCertificado.lblNombreImprimir.setText(txtNombre.getText());
+        pnlCertificado.lblccImprimir.setText(txtCodigo.getText());
+        pnlCertificado.lblApellidoImprimir.setText(txtApellido.getText());
+        Imprimir.setVisible(true);
+        Imprimir.setLocationRelativeTo(null);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_btnImprimirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -408,10 +538,10 @@ public class frmEstudiantes extends javax.swing.JFrame {
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnInsertar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JComboBox<String> cmbGrupo;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> cmbxGrupo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -424,10 +554,11 @@ public class frmEstudiantes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField txtAcudiente;
-    private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCodigo;
+    public static javax.swing.JTextField txtApellido;
+    public static javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtGrupo;
+    public static javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelAcudiente;
     private javax.swing.JTextField txtTelefonoEst;
     // End of variables declaration//GEN-END:variables
@@ -452,11 +583,11 @@ public class frmEstudiantes extends javax.swing.JFrame {
             ConexionSQL con = new ConexionSQL();
             Connection conexion = con.conectar();
             Statement st = conexion.createStatement();
-            String sql ="SELECT * FROM grupo ORDER BY nombre_Asig ASC";
+            String sql ="SELECT id_grupo FROM grupo ORDER BY id_grupo ASC";
             ResultSet rs = st.executeQuery(sql);
-            cmbGrupo.addItem("Seleccione una opción");
+            //cmbGrupo.addItem("Seleccione una opción");
             while(rs.next()){
-                cmbGrupo.addItem(rs.getString("nombre_asig"));
+                cmbxGrupo.addItem(rs.getString("id_grupo"));
             }
         } catch (SQLException e) {
         }

@@ -37,13 +37,15 @@ public class CrudAsignaturas {
         try {
             Connection conexion = con.conectar();
             Statement st = conexion.createStatement();
-            String sql ="SELECT * FROM asignaturas;";
+            String sql ="SELECT codigo_asig, nombre_asig, nombre_doc, apellido_doc FROM vista_asignatura ORDER BY codigo_asig ASC ;";
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
                 //Creacion de instancia de VarAsignatura
                 VarAsignatura asignatura = new VarAsignatura();
                 asignatura.setCodigo(rs.getString(1));
                 asignatura.setNombre(rs.getString(2));
+                asignatura.setDocenteNombre(rs.getString(3));
+                asignatura.setDocenteApellido(rs.getString(4));
                 datos.add(asignatura);
             }
         } catch (SQLException e) {JOptionPane.showMessageDialog(null,"Error en Mostrar asignatura: "+e);}

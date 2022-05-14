@@ -12,29 +12,44 @@ import javax.swing.JOptionPane;
  */
 public class CrudUsuarios {
     ConexionSQL con = new ConexionSQL();
-    public int Validar (String usuarioIngresado, String claveIngresada){
+    public String ingreso;
+    public int  Validar (String usuarioIngresado, String claveIngresada){
         
-        int i = Integer.parseInt(usuarioIngresado);
-        int ingreso=0;
+         
         try {
             VarUsuario ObjSesion = new VarUsuario();
+            //Docente
             Connection conexion = con.conectar();
             Statement st = conexion.createStatement();
-            String sql = "SELECT id_usu, clave_usu FROM usuario WHERE id_usu='"+i+"' and clave_usu='"+claveIngresada+"';";
+            String sql = "SELECT id_doc, clave_doc FROM docentes WHERE id_doc='"+usuarioIngresado+"' and clave_doc='"+claveIngresada+"';";
             ResultSet rs= st.executeQuery(sql);
+            //Estudiante
+           
             if(rs.next()){
-               
+                
                 //La idea es guardar los datos por usuario para definir que esta o no habilitado
-                ObjSesion.setUsuario(rs.getString(String.valueOf("id_usu")));
-                ObjSesion.setClave(rs.getString("clave_usu"));
-                JOptionPane.showMessageDialog(null, "Usuario Valido");
-                
-                ingreso =1;
-                
-            }else JOptionPane.showMessageDialog(null, "Usuario No encontado");
+                ObjSesion.setUsuario(rs.getString(String.valueOf("id_doc")));
+                ObjSesion.setClave(rs.getString("clave_doc"));
+                JOptionPane.showMessageDialog(null, "Usuario Docente Valido");   
+                return 1;
+            }
+            
+            else if (true){
+                 //Connection conexion2 = con.conectar();
+                Connection conexion2 = con.conectar();
+                Statement st2 = conexion2.createStatement();
+                String sql2 = "SELECT id_est, clave_est FROM estudiantes WHERE id_est='"+usuarioIngresado+"' and clave_est='"+claveIngresada+"';";
+                ResultSet rs2= st2.executeQuery(sql2);
+                if(rs2.next()){
+                    ObjSesion.setUsuario(rs2.getString(String.valueOf("id_est")));
+                    ObjSesion.setClave(rs2.getString("clave_est"));
+                    JOptionPane.showMessageDialog(null, "Usuario Estudiante Valido"); 
+                    return 1;
+                }
+                else {JOptionPane.showMessageDialog(null, "Usuario No encontado");}
+            }
            
         } catch (SQLException e) {JOptionPane.showMessageDialog(null, "Error en Inicio sesion: "+e);}
-        return ingreso;
-    
+        return 0;
     }
 }

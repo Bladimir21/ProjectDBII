@@ -54,10 +54,9 @@ public class frmDocentes extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtblDocente = new javax.swing.JTable();
         cmbAsignaturas = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
+        txtAsignatura = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,34 +156,16 @@ public class frmDocentes extends javax.swing.JFrame {
             }
         });
 
-        jtblDocente.setBackground(new java.awt.Color(237, 245, 255));
-        jtblDocente.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "No. Documento", "Nombre", "Apellido", "Asignatura", "Direccion", "Telefono"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        cmbAsignaturas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbAsignaturasItemStateChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(jtblDocente);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Symbol", 3, 14)); // NOI18N
         jLabel5.setText("Asignatura");
+
+        txtAsignatura.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -197,7 +178,18 @@ public class frmDocentes extends javax.swing.JFrame {
                         .addGap(294, 294, 294)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
+                        .addGap(228, 228, 228)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,25 +213,14 @@ public class frmDocentes extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtApellido)
-                            .addComponent(cmbAsignaturas, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbAsignaturas, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 93, Short.MAX_VALUE))
+                                .addComponent(txtAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +230,7 @@ public class frmDocentes extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,10 +245,9 @@ public class frmDocentes extends javax.swing.JFrame {
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbAsignaturas, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(54, 54, 54)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel5)
+                    .addComponent(txtAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(180, 180, 180)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -302,28 +282,70 @@ public class frmDocentes extends javax.swing.JFrame {
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         // TODO add your handling code here:
-        ObjCrud.InsertarDocente(txtNoDocumento.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(),txtDireccion.getText());
+        ObjCrud.InsertarDocente(txtNoDocumento.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(),txtDireccion.getText(),cmbAsignaturas.getSelectedItem().toString());
     }//GEN-LAST:event_btnInsertarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         // TODO add your handling code here:
-        ObjCrud.Mostrar(txtNoDocumento.getText());
-        txtNoDocumento.setText(ObjVarDoc.getCc());
-        txtNombre.setText(ObjVarDoc.getNombre());
-        txtApellido.setText(ObjVarDoc.getApellido());
-        txtTelefono.setText(ObjVarDoc.getTelefono());
-        txtDireccion.setText(ObjVarDoc.getDireccion());
+//        ObjCrud.Mostrar(txtNoDocumento.getText());
+//        txtNoDocumento.setText(ObjVarDoc.getCc());
+//        txtNombre.setText(ObjVarDoc.getNombre());
+//        txtApellido.setText(ObjVarDoc.getApellido());
+//        txtTelefono.setText(ObjVarDoc.getTelefono());
+//        txtDireccion.setText(ObjVarDoc.getDireccion());
+            ConexionSQL con = new ConexionSQL();
+            try{
+            Connection conexion = con.conectar();
+            Statement st = conexion.createStatement();
+             //int i = Integer.parseInt(id);
+            String sql = "SELECT * FROM docentes WHERE id_doc='"+txtNoDocumento.getText()+"';";
+            ResultSet rs = st.executeQuery(sql);
+            if(rs.next()){
+                
+                txtNoDocumento.setText(rs.getString("id_doc"));
+                txtNombre.setText(rs.getString("nombre_doc"));
+                txtApellido.setText(rs.getString("apellido_doc"));
+                txtTelefono.setText(rs.getString("telefono_doc"));
+                txtDireccion.setText(rs.getString("direccion_doc"));
+                txtAsignatura.setText(rs.getString("codigo_asig"));
+                
+            }else{JOptionPane.showMessageDialog(null, "No existe Docente, revisar codigo");}
+            conexion.close();
+            st.close();
+        
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Error en Mostrar Profesor: "+ e);
+        
+        }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-        ObjCrud.Actualizar(txtNoDocumento.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(), txtDireccion.getText());
+        ObjCrud.Actualizar(txtNoDocumento.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(), txtDireccion.getText(),cmbAsignaturas.getSelectedItem().toString());
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         ObjCrud.Eliminar(txtNoDocumento.getText());
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void cmbAsignaturasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAsignaturasItemStateChanged
+        // TODO add your handling code here:
+        //AGREGAR ITEM YA CAPTADO
+            try {
+            String id =cmbAsignaturas.getSelectedItem().toString();
+            int codigo_asig = Integer.parseInt(id);
+            ConexionSQL con = new ConexionSQL();
+            Connection conexion = con.conectar();
+            Statement st = conexion.createStatement();
+            String sql = "SELECT nombre_asig FROM asignaturas WHERE codigo_asig='"+codigo_asig+"';";
+            ResultSet rs = st.executeQuery(sql);
+            if(rs.next()){
+                txtAsignatura.setText(rs.getString("nombre_asig"));
+                }
+        } catch (SQLException e) {JOptionPane.showMessageDialog(null, "Error en cargar combox" +e);        }
+    }//GEN-LAST:event_cmbAsignaturasItemStateChanged
     
     /**
      * @param args the command line arguments
@@ -375,9 +397,8 @@ public class frmDocentes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtblDocente;
     private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtAsignatura;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNoDocumento;
     private javax.swing.JTextField txtNombre;
@@ -392,11 +413,11 @@ public class frmDocentes extends javax.swing.JFrame {
             ConexionSQL con = new ConexionSQL();
             Connection conexion = con.conectar();
             Statement st = conexion.createStatement();
-            String sql ="SELECT * FROM asignaturas ORDER BY nombre_Asig ASC";
+            String sql ="SELECT codigo_asig FROM asignaturas ORDER BY codigo_asig ASC";
             ResultSet rs = st.executeQuery(sql);
-            cmbAsignaturas.addItem("Seleccione una opción");
+            //cmbAsignaturas.addItem("Seleccione una opción");
             while(rs.next()){
-                cmbAsignaturas.addItem(rs.getString("nombre_asig"));
+                cmbAsignaturas.addItem(rs.getString("codigo_asig"));
             }
         } catch (SQLException e) {JOptionPane.showMessageDialog(null, "Error en cargar combox" +e);        }
     }

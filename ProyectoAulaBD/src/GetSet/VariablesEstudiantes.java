@@ -8,23 +8,28 @@ package GetSet;
  *
  * @author Bladimir
  */
+//Las variables se pierden en al usar el get
 public class VariablesEstudiantes {
     private String codigo,nombre,apellido,telefono,direccion,acudiente,telAcudiente;
 
     public String getCodigo() {
+        //System.out.println("codigo: "+codigo);
         return codigo;
     }
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+        //System.out.println("codigo: "+codigo);
     }
 
     public String getNombre() {
+        //System.out.println("codigo: "+nombre);
         return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+        //System.out.println("codigo: "+nombre);
     }
 
     public String getApellido() {
@@ -66,5 +71,5 @@ public class VariablesEstudiantes {
     public void setTelAcudiente(String telAcudiente) {
         this.telAcudiente = telAcudiente;
     }
-   
+ 
 }

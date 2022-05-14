@@ -4,6 +4,7 @@
  */
 package Imprimir;
 
+import Vista.frmEstudiantes;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import javax.swing.JOptionPane;
@@ -35,19 +36,33 @@ public class frmImprimir extends javax.swing.JFrame {
     private void initComponents() {
 
         btnImprimir = new javax.swing.JButton();
-        pnlCertificado1 = new Imprimir.pnlCertificado();
         btnPDF = new javax.swing.JButton();
+        pnlCertificado2 = new Imprimir.pnlCertificado();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnImprimir.setBackground(new java.awt.Color(255, 255, 255));
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/impresora.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
+        btnImprimir.setBorder(null);
+        btnImprimir.setBorderPainted(false);
+        btnImprimir.setContentAreaFilled(false);
+        btnImprimir.setFocusPainted(false);
+        btnImprimir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imprimir_Sel2.png"))); // NOI18N
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImprimirActionPerformed(evt);
             }
         });
 
-        btnPDF.setText("Generar PDF");
+        btnPDF.setBackground(new java.awt.Color(255, 255, 255));
+        btnPDF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/atras_Imprimir.png"))); // NOI18N
+        btnPDF.setText("Regresar");
+        btnPDF.setBorder(null);
+        btnPDF.setBorderPainted(false);
+        btnPDF.setContentAreaFilled(false);
+        btnPDF.setFocusPainted(false);
+        btnPDF.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/atras_Imprimir-Señ.png"))); // NOI18N
         btnPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPDFActionPerformed(evt);
@@ -59,26 +74,24 @@ public class frmImprimir extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlCertificado1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnImprimir)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPDF)
-                        .addGap(16, 16, 16)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(pnlCertificado2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btnPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(177, 177, 177)
+                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlCertificado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(8, 8, 8)
+                .addComponent(pnlCertificado2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnImprimir)
-                    .addComponent(btnPDF))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -89,7 +102,7 @@ public class frmImprimir extends javax.swing.JFrame {
         PrinterJob job = PrinterJob.getPrinterJob();
         //pnlEstudiante objpanel = new pnlEstudiante();
         //job.setPrintable((Printable) objpanel);
-        job.setPrintable(pnlCertificado1);
+        job.setPrintable(pnlCertificado2);
         if(job.printDialog()){
             try {
                 job.print();
@@ -102,16 +115,20 @@ public class frmImprimir extends javax.swing.JFrame {
 
     private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
         // TODO add your handling code here:
-        Document documento = new Document();
-        try {
-            String ruta = System.getProperty("user.home");
-            PdfWriter.getInstance(documento, new FileOutputStream(ruta+"/\\Desktop/Reporte.pdf"));
-            documento.open();
-            PdfPTable tabla = new PdfPTable(4);
-            //De esta forma se va a crear una tabla no generar un pdf en este formato desde una vista establecida
-            
-        } catch (Exception e) {
-        }
+        frmEstudiantes ObjEst = new frmEstudiantes();
+        ObjEst.setVisible(true);
+        ObjEst.setLocationRelativeTo(null);
+        this.setVisible(false);
+//        Document documento = new Document();
+//        try {
+//            String ruta = System.getProperty("user.home");
+//            PdfWriter.getInstance(documento, new FileOutputStream(ruta+"/\\Desktop/Reporte2.pdf"));
+//            documento.open();
+//            PdfPTable tabla = new PdfPTable(4);
+//            //De esta forma se va a crear una tabla no generar un pdf en este formato desde una vista establecida
+//            
+//        } catch (Exception e) {
+//        }
               
     }//GEN-LAST:event_btnPDFActionPerformed
 
@@ -153,6 +170,6 @@ public class frmImprimir extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnPDF;
-    private Imprimir.pnlCertificado pnlCertificado1;
+    private Imprimir.pnlCertificado pnlCertificado2;
     // End of variables declaration//GEN-END:variables
 }

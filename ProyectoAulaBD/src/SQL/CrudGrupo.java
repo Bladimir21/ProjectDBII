@@ -19,19 +19,18 @@ public class CrudGrupo {
     public void insertar (String id,String nombre, String id_docente){
 
             try{
-                
-                int i = Integer.parseInt(id);
-                int e = Integer.parseInt(id_docente);
+                int idGrupo = Integer.parseInt(id);
+                int profesor = Integer.parseInt(id_docente);
                 //Conecta db
                 Connection conexion = con.conectar();
                 //Prepara la sentencia sql 
                 Statement st = conexion.createStatement();
                 //Sentencia SQL
-                String sql = "INSERT INTO grupo (id_grupo,nombre_grupo,id_docentes) VALUES('"+i+"'+'"+nombre+"'+'"+e+"');";
+                String sql = "INSERT INTO grupo (id_grupo,nombre_grupo,id_doc) VALUES('"+idGrupo+"','"+nombre+"','"+profesor+"');";
                 st.execute(sql);
                 st.close();
                 conexion.close();
-                JOptionPane.showMessageDialog(null, "Grupo Crado");
+                JOptionPane.showMessageDialog(null, "Grupo Creado");
 
             }
             catch(SQLException e){
@@ -40,28 +39,28 @@ public class CrudGrupo {
             }
     }
     
-     public void MostrarEstudiante (String id){
-        VarGrupo objVarGrupo= new VarGrupo();
-        try{
-            Connection conexion = con.conectar();
-            Statement st = conexion.createStatement();
-             int i = Integer.parseInt(id);
-            String sql = "SELECT * FROM grupo WHERE id_grupos ='"+i+"';";
-            ResultSet rs = st.executeQuery(sql);
-            if(rs.next()){
-                
-                objVarGrupo.setId(rs.getString(String.valueOf("id_grupo")));
-                objVarGrupo.setNombre(rs.getString("nombre_grupo"));
-                objVarGrupo.setId_docente(rs.getString(String.valueOf("id_docentes")));
-            }else{JOptionPane.showMessageDialog(null, "No existe Estudiante, revisar codigo");}
-            conexion.close();
-            st.close();
-        
-        }
-        catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Error en Mostrar grupo: "+ e);
-        
-        }
+     public void Mostrar (String id){
+//        VarGrupo objVarGrupo= new VarGrupo();
+//        try{
+//            Connection conexion = con.conectar();
+//            Statement st = conexion.createStatement();
+//             int i = Integer.parseInt(id);
+//            String sql = "SELECT * FROM vista_grupo WHERE id_grupo ='"+i+"';";
+//            ResultSet rs = st.executeQuery(sql);
+//            if(rs.next()){
+//                
+//                objVarGrupo.setId(rs.getString(String.valueOf("id_grupo")));
+//                objVarGrupo.setNombre(rs.getString("nombre_grupo"));
+//                objVarGrupo.setId_docente(rs.getString(String.valueOf("id_doc")));
+//            }else{JOptionPane.showMessageDialog(null, "No existe Docente, revisar codigo");}
+//            conexion.close();
+//            st.close();
+//        
+//        }
+//        catch(SQLException e){
+//            JOptionPane.showMessageDialog(null,"Error en Mostrar grupo: "+ e);
+//        
+//        }
     }
     
     public void ActualizarEstudiante(String id,String nombre, String id_docente){
@@ -71,7 +70,7 @@ public class CrudGrupo {
             Statement st = conexion.createStatement();
             int i = Integer.parseInt(id);
             int e = Integer.parseInt(id_docente);
-            String sql = "UPDATE grupo SET nombre_grupo='"+nombre+"', id_docentes='"+e+"' WHERE id_est='"+i+"';";
+            String sql = "UPDATE grupo SET nombre_grupo='"+nombre+"', id_doc='"+e+"' WHERE id_grupo='"+i+"';";
             st.executeUpdate(sql);
             conexion.close();
             st.close();
@@ -85,7 +84,7 @@ public class CrudGrupo {
             Statement st = conexion.createStatement();
              int i = Integer.parseInt(id);
              if(i>0){
-                String sql = "DELETE FROM grupo WHERE id_est='"+i+"';";
+                String sql = "DELETE FROM grupo WHERE id_grupo='"+i+"';";
                 st.executeQuery(sql);
              }
              st.close();

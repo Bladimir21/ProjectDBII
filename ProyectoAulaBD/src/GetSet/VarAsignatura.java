@@ -10,6 +10,8 @@ package GetSet;
  */
 public class VarAsignatura {
 
+    private String codigo,nombre,docenteNombre,docenteApellido;
+
     public String getCodigo() {
         return codigo;
     }
@@ -25,6 +27,21 @@ public class VarAsignatura {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    private String codigo,nombre;
+
+    public String getDocenteNombre() {
+        return docenteNombre;
+    }
+
+    public void setDocenteNombre(String docenteNombre) {
+        this.docenteNombre = docenteNombre;
+    }
+
+    public String getDocenteApellido() {
+        return docenteApellido;
+    }
+
+    public void setDocenteApellido(String docenteApellido) {
+        this.docenteApellido = docenteApellido;
+    }
     
 }
