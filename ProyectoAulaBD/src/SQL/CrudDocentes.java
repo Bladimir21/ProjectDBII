@@ -18,7 +18,26 @@ public class CrudDocentes {
     ConexionSQL con = new ConexionSQL();
     VarDocentes ObjDocente = new VarDocentes();
     //Falta agregar Asignatura dictada por el docente
-    public void InsertarDocente(String id, String nombre, String apellido, String telefono, String direccion,String asignatura){
+    public void InsertarDocente1(String id, String nombre, String apellido, String telefono, String direccion){
+        
+        try {
+            int i = Integer.parseInt(id);
+            Connection conexion = con.conectar();
+            Statement st = conexion.createStatement();
+            /*docentes
+                id_doc
+                nombre_doc
+                apellido_doc
+                telefono_doc
+                direccion_doc*/
+            String sql = "INSERT INTO docentes (id_doc, nombre_doc , apellido_doc, telefono_doc, direccion_doc) VALUES ('"+i+"','"+nombre+"','"+apellido+"','"+telefono+"','"+direccion+"');";
+            st.execute(sql);
+            st.close();
+            conexion.close();
+        } catch (SQLException e) {JOptionPane.showMessageDialog(null, "Error en Insertar Docente 1: "+e);}
+    }
+    
+    public void InsertarDocente2(String id, String nombre, String apellido, String telefono, String direccion,String asignatura){
         
         try {
             int i = Integer.parseInt(id);
@@ -34,7 +53,7 @@ public class CrudDocentes {
             st.execute(sql);
             st.close();
             conexion.close();
-        } catch (SQLException e) {JOptionPane.showMessageDialog(null, "Error en Insertar Docente: "+e);}
+        } catch (SQLException e) {JOptionPane.showMessageDialog(null, "Error en Insertar Docente 2: "+e);}
     }
     public void Mostrar(String id){
         
@@ -88,13 +107,13 @@ public class CrudDocentes {
             
             Connection conexion = con.conectar();
             Statement st = conexion.createStatement();
-            String sql ="SELECT * FROM docentes WHERE codigo_asig is null ORDER BY id_doc ASC;";
+            String sql ="SELECT id_doc,nombre_doc,apellido_doc,telefono_doc FROM docentes WHERE codigo_asig IS null;";
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()){
-                ObjDocente.setCc(rs.getString(String.valueOf("id_doc")));
-                ObjDocente.setNombre(rs.getString("nombre_doc"));
-                ObjDocente.setApellido(rs.getString("apellido_doc"));
-                ObjDocente.setTelefono(rs.getString("telefono_doc"));
+                ObjDocente.setCc(rs.getString(1));
+                ObjDocente.setNombre(rs.getString(2));
+                ObjDocente.setApellido(rs.getString(3));
+                ObjDocente.setTelefono(rs.getString(4));
                 datos.add(ObjDocente);
             }
             conexion.close();

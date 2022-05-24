@@ -57,6 +57,7 @@ public class frmDocentes extends javax.swing.JFrame {
         cmbAsignaturas = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         txtAsignatura = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,9 +166,15 @@ public class frmDocentes extends javax.swing.JFrame {
             }
         });
 
+        cmbAsignaturas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbAsignaturas.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbAsignaturasItemStateChanged(evt);
+            }
+        });
+        cmbAsignaturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbAsignaturasActionPerformed(evt);
             }
         });
 
@@ -176,18 +183,30 @@ public class frmDocentes extends javax.swing.JFrame {
 
         txtAsignatura.setEnabled(false);
 
+        jButton1.setBackground(new java.awt.Color(255, 251, 251));
+        jButton1.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(51, 255, 51));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mostar.png"))); // NOI18N
+        jButton1.setText("Por Asignar");
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setFocusPainted(false);
+        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Mostrar_sel.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
-                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(153, 153, 153)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,11 +240,20 @@ public class frmDocentes extends javax.swing.JFrame {
                         .addGap(330, 330, 330)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(216, 216, 216)
-                        .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(228, 228, 228)
+                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(216, 216, 216)
+                                .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(134, Short.MAX_VALUE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,7 +261,7 @@ public class frmDocentes extends javax.swing.JFrame {
                 .addComponent(btnRegresar)
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,7 +283,8 @@ public class frmDocentes extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,7 +316,10 @@ public class frmDocentes extends javax.swing.JFrame {
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         // TODO add your handling code here:
-        ObjCrud.InsertarDocente(txtNoDocumento.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(),txtDireccion.getText(),cmbAsignaturas.getSelectedItem().toString());
+        if(cmbAsignaturas.equals("")){
+         ObjCrud.InsertarDocente2(txtNoDocumento.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(),txtDireccion.getText(),cmbAsignaturas.getSelectedItem().toString());
+        }else ObjCrud.InsertarDocente1(txtNoDocumento.getText(), txtNombre.getText(), txtApellido.getText(), txtTelefono.getText(),txtDireccion.getText());
+            
     }//GEN-LAST:event_btnInsertarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
@@ -338,8 +370,12 @@ public class frmDocentes extends javax.swing.JFrame {
     private void cmbAsignaturasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAsignaturasItemStateChanged
         // TODO add your handling code here:
         //AGREGAR ITEM YA CAPTADO
-            try {
+       
             String id =cmbAsignaturas.getSelectedItem().toString();
+            if(id == ""){
+                txtAsignatura.setText("");
+            }else{
+          try {
             int codigo_asig = Integer.parseInt(id);
             ConexionSQL con = new ConexionSQL();
             Connection conexion = con.conectar();
@@ -351,6 +387,18 @@ public class frmDocentes extends javax.swing.JFrame {
                 }
         } catch (SQLException e) {JOptionPane.showMessageDialog(null, "Error en cargar combox" +e);        }
     }//GEN-LAST:event_cmbAsignaturasItemStateChanged
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        frmDocentesPorAsignar Libres = new frmDocentesPorAsignar();
+        Libres.setVisible(true);
+        Libres.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cmbAsignaturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAsignaturasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbAsignaturasActionPerformed
     
     /**
      * @param args the command line arguments
@@ -394,6 +442,7 @@ public class frmDocentes extends javax.swing.JFrame {
     private javax.swing.JButton btnInsertar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cmbAsignaturas;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -413,7 +462,7 @@ public class frmDocentes extends javax.swing.JFrame {
     /*CARGA COMBOX*/
     public void CargaCombox(){
         
-        
+         cmbAsignaturas.addItem("");
         try {
             ConexionSQL con = new ConexionSQL();
             Connection conexion = con.conectar();
@@ -424,6 +473,7 @@ public class frmDocentes extends javax.swing.JFrame {
             while(rs.next()){
                 cmbAsignaturas.addItem(rs.getString("codigo_asig"));
             }
+           
         } catch (SQLException e) {JOptionPane.showMessageDialog(null, "Error en cargar combox" +e);        }
     }
     
