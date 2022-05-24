@@ -450,7 +450,7 @@ public class frmCalificaciones extends javax.swing.JFrame {
 public void Mostrar(JTable jtblCalificacion){
        modelo =  (DefaultTableModel) jtblCalificacion.getModel();
        List<VarCalificacion> Listar = calificacion.Mostrar();
-       Object[] objeto = new Object[7];
+       Object[] objeto = new Object[6];
        for(int i=0; i<Listar.size(); i++){
            objeto[0] = Listar.get(i).getDocumentoEst();
            objeto[1] = Listar.get(i).getAsignatura();
@@ -458,7 +458,7 @@ public void Mostrar(JTable jtblCalificacion){
            objeto[3] = Listar.get(i).getApellidoDocente();
            objeto[4] = Listar.get(i).getNota1();
            objeto[5] = Listar.get(i).getNota2();
-           objeto[6] = Listar.get(i).getEvaluacion();
+           //objeto[6] = Listar.get(i).getEvaluacion();
            modelo.addRow(objeto);
        }
        jtblCalificacion.setModel(modelo);

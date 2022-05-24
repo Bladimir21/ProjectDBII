@@ -81,4 +81,26 @@ public class CrudDocentes {
             conexion.close();
         } catch (SQLException e) {JOptionPane.showMessageDialog(null, "Error en Eliminar Docente: "+e);}
     }
+        
+    public ArrayList<VarDocentes> Consultar (){
+        ArrayList<VarDocentes> datos = new ArrayList<>();
+        try {
+            
+            Connection conexion = con.conectar();
+            Statement st = conexion.createStatement();
+            String sql ="SELECT * FROM docentes WHERE codigo_asig is null ORDER BY id_doc ASC;";
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()){
+                ObjDocente.setCc(rs.getString(String.valueOf("id_doc")));
+                ObjDocente.setNombre(rs.getString("nombre_doc"));
+                ObjDocente.setApellido(rs.getString("apellido_doc"));
+                ObjDocente.setTelefono(rs.getString("telefono_doc"));
+                datos.add(ObjDocente);
+            }
+            conexion.close();
+            st.close();
+        } catch (SQLException e) {JOptionPane.showMessageDialog(null, "No existe Docente, sin carga academica: "+e);}
+         return datos;
+    }
 }
+

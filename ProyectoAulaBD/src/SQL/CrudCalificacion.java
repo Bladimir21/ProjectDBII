@@ -49,21 +49,24 @@ public class CrudCalificacion {
             
             Connection conexion = con.conectar();
             Statement st = conexion.createStatement();
-            String sql ="SELECT * FROM vista_calificacion;";
+            String sql ="SELECT nombre_asig, nombre_doc, apellido_doc, nota1_calificacion,nota2_calificacion,evaluacion_calificacion FROM vista_calificacion;";
             ResultSet rs = st.executeQuery(sql);
+            VarCalificacion calificacion = new VarCalificacion();
             while(rs.next()){
-                VarCalificacion calificacion = new VarCalificacion();
                 
-                calificacion.setDocumentoEst(rs.getString(1));
-                calificacion.setAsignatura(rs.getString(2));
-                calificacion.setNombreDocente(rs.getString(3));
-                calificacion.setApellidoDocente(rs.getString(4));
-                calificacion.setNota1(rs.getString(5));
-                calificacion.setNota2(rs.getString(6));
-                calificacion.setEvaluacion(rs.getString(7));
+                
+                //calificacion.setDocumentoEst(rs.getString(1));
+                calificacion.setAsignatura(rs.getString(1));
+                calificacion.setNombreDocente(rs.getString(2));
+                calificacion.setApellidoDocente(rs.getString(3));
+                calificacion.setNota1(rs.getString(4));
+                calificacion.setNota2(rs.getString(5));
+                calificacion.setEvaluacion(rs.getString(6));
                 datos.add(calificacion);
+                
             }
             JOptionPane.showMessageDialog(null,"Funciona :D");
+            
         } catch (SQLException e) {JOptionPane.showMessageDialog(null,"Error en Mostrar calificacion: "+e);}
         return datos;
     }
